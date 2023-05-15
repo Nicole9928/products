@@ -10,3 +10,6 @@ while True:
 	products.append(p)  # 把小清單放到大清單
 						# 簡潔寫法 products.append([name, price])
 print(products)
+
+for p in products:      # 用for loop來一個一個拿出來
+	print(p[0], '的價格是', p[1])

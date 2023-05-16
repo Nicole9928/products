@@ -1,23 +1,28 @@
+# 讀取檔案
 products = []
+with open('products.csv', 'r', encoding='utf-8') as f:
+	for line in f:
+		if '商品,價格' in line:
+			continue    # 跳過繼續
+		name, price = line.strip().split(',')
+		products.append([name, price])
+print(products)
+
+# 讓使用者輸入
 while True:
 	name = input('請輸入商品名稱: ')
 	if name == 'q':
 		break
 	price = input('請輸入商品價格: ')
-	p = []         # 建立小清單，也可寫成 p = [name, price]
-	p.append(name)
-	p.append(price)
-	price = int(price)
-	products.append(p)  # 把小清單放到大清單
-						# 簡潔寫法 products.append([name, price])
+	products.append([name, price])
 print(products)
 
-for p in products:      # 用for loop來一個一個拿出來
+# 印出所有購買紀錄
+for p in products:     
 	print(p[0], '的價格是', p[1])
 
-
-with open('prosucts.csv', 'w', encoding='utf-8') as f:      # read(r)讀取模式，write(w)寫入模式
-										  # csv可用excel，txt為文字檔
+# 寫入檔案
+with open('products.csv', 'w', encoding='utf-8') as f:     
 	f.write('商品,價格\n')
 	for p in products:	
 		f.write(p[0] + ',' + p[1] + '\n')
